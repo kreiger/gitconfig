@@ -1,0 +1,31 @@
+[user]
+	name = Christoffer Hammarström
+	email = christoffer.hammarstrom@
+[color]
+	ui = auto
+[log]
+	date = local
+[push]
+	default = simple
+[merge]
+	conflictstyle = diff3
+	ff = only
+	stat = true
+[diff]
+	algorithm = patience
+	renameLimit = 999999
+	renames = true
+[rerere]
+	enabled = 1
+[alias]
+tree = log --oneline --decorate --graph
+[diff "json"]
+	textconv = python -mjson.tool
+[diff "properties"]
+	textconv = properties.textconv
+[alias]
+	serve = !git daemon --reuseaddr --verbose --base-path=.. --export-all --enable=receive-pack ../"${PWD##*/}"
+[pull]
+	rebase = true
+[pager]
+	status = true
