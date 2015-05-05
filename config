@@ -17,14 +17,14 @@
 	renames = true
 [rerere]
 	enabled = 1
-[alias]
-tree = log --oneline --decorate --graph
 [diff "json"]
 	textconv = python -mjson.tool
 [diff "properties"]
 	textconv = properties.textconv
 [alias]
-	serve = !git daemon --reuseaddr --verbose --base-path=.. --export-all --enable=receive-pack ../"${PWD##*/}"
+	tree = log --oneline --decorate --graph
+	serve = !echo "Serving as git://$(hostname)/${PWD##*/}" && git daemon --reuseaddr --verbose --base-path=.. --export-all --enable=receive-pack ../"${PWD##*/}"
+	branches = !git for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(HEAD)%1B[m%(refname:short)%09%(color:blue)%(committerdate:short) (%(committerdate:relative))%09%(color:green)%(authorname)%09%1B[m%(contents:subject)'|column -s $'\t' -t
 [pull]
 	rebase = true
 [pager]
